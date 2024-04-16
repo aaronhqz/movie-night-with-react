@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './movie.scss';
 
 //Dependencies
 import { Row, Col, Button } from 'antd';
+import { PlayCircleOutlined } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
@@ -12,6 +13,7 @@ import { URL_API, API_KEY, IMAGE_URL } from '../../utils/constants';
 
 //Components
 import Loading from '../../components/Loading';
+import ModalVideo from '../../components/ModalVideo';
 
 export default function Movie() {
 	const { id } = useParams();
@@ -70,6 +72,38 @@ function MovieInfo(props) {
 		movieInfo: { title, id, release_date, overview, genres },
 	} = props;
 
+	const [isVisibleModal, setIsVisibleModal] = useState(false);
+
+	const movieTrailer = useFetch(
+		`${URL_API}/movie/${id}/videos?api_key=${API_KEY}&language=en-LA`
+	);
+
+	const openModal = () => setIsVisibleModal(true);
+	const closeModal = () => setIsVisibleModal(false);
+
+	const renderMovieTrailer = () => {
+		if (movieTrailer.result) {
+			if (movieTrailer.result.results.length > 0) {
+				return (
+					<>
+						<Button
+							icon={<PlayCircleOutlined />}
+							onClick={openModal}
+						>
+							Ver trailer
+						</Button>
+						<ModalVideo
+							videoKey={movieTrailer.result.results[0].key}
+							videoPlatform={movieTrailer.result.results[0].site}
+							isOpen={isVisibleModal}
+							close={closeModal}
+						/>
+					</>
+				);
+			}
+		}
+	};
+
 	return (
 		<>
 			<div className='movie__info-header'>
@@ -80,7 +114,10 @@ function MovieInfo(props) {
 					</span>
 				</h1>
 
-				<button> Ver Trailer </button>
+				{renderMovieTrailer()}
+
+				{/* <button> Ver Trailer </button> */}
+				<ModalVideo />
 			</div>
 
 			<div className='movie__info-content'>

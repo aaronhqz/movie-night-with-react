@@ -26,10 +26,6 @@ export default function Home() {
 		`${URL_API}/movie/top_rated?api_key=${API_KEY}&language=es-LA`
 	);
 
-	if (!newMovies || newMovies.loading || !newMovies.result) {
-		return <div>Loading...</div>;
-	}
-
 	return (
 		<>
 			<SliderMovies movies={newMovies} />
