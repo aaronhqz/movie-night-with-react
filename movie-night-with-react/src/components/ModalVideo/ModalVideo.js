@@ -23,18 +23,20 @@ export default function ModalVideo(props) {
 		}
 	}, [videoKey, videoPlatform]);
 
-	console.log(videoURL);
+	console.log(
+		`#LogMoviePlatform: La plataforma de la película es: ${videoPlatform}`
+	);
 
 	return (
 		<Modal
 			className='modal-video'
 			open={isOpen}
-			// visible={isOpen}
 			centered
 			onCancel={close}
 			footer={false}
+			destroyOnClose={true}
 		>
-			Aqui esta mi Video Modal
+			<ReactPlayer url={videoURL} controls />
 		</Modal>
 	);
 }

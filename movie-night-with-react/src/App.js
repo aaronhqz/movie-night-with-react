@@ -11,8 +11,8 @@ import MenuTop from './components/MenuTop';
 import Home from './pages/home';
 import Error404 from './pages/error404';
 import Movie from './pages/movie';
-import NewMovies from './pages/newMovies';
-import PopularMovies from './pages/popularMovies';
+import NewMovies from './pages/new-movies';
+import PopularMovies from './pages/popular-movies';
 import Search from './pages/search';
 
 export default function App() {

@@ -1,8 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+
+//Dependencies:
+import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import 'rc-pagination/assets/index.css';
+
+//Pages:
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
