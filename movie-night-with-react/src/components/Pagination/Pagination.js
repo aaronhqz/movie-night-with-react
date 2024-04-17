@@ -5,12 +5,12 @@ import './Pagination.scss';
 import Pagination from 'rc-pagination';
 
 export default function PaginationMovies(props) {
-	const { currentpage, totalItems, onChangePage } = props;
+	const { currentPage, totalItems, onChangePage } = props;
 
 	return (
 		<Pagination
 			className='pagination-movies'
-			current={currentpage}
+			current={currentPage}
 			total={totalItems}
 			pageSize={20}
 			onChange={onChangePage}
